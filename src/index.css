@@ -1,0 +1,122 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ========================================
+   CSS Variables for Theme - Dusty Rose
+   ======================================== */
+:root {
+  --bg-primary: #fdf2f8;
+  --bg-secondary: #ffffff;
+  --bg-card: #ffffff;
+  --text-primary: #1f1225;
+  --text-secondary: #6b5b7b;
+  --border-color: #f0d9e8;
+  --accent: #c084b4;
+  --accent-hover: #a86da0;
+  --accent-light: #f5e1f0;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --shadow: 0 4px 6px -1px rgba(192, 132, 180, 0.15);
+  --gradient-primary: linear-gradient(135deg, #c084b4 0%, #9b6a9e 50%, #7a4f82 100%);
+  --gradient-light: linear-gradient(135deg, #f5e1f0 0%, #edd4e8 100%);
+}
+
+.dark {
+  --bg-primary: #1a0f1e;
+  --bg-secondary: #2a1a30;
+  --bg-card: #2a1a30;
+  --text-primary: #f5e1f0;
+  --text-secondary: #b89bc0;
+  --border-color: #3d2845;
+  --accent: #d4a0ca;
+  --accent-hover: #e0b8d8;
+  --accent-light: #3d2845;
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+  --gradient-primary: linear-gradient(135deg, #d4a0ca 0%, #b88ab0 50%, #9b6a9e 100%);
+  --gradient-light: linear-gradient(135deg, #2a1a30 0%, #3d2845 100%);
+}
+
+/* ========================================
+   Base Styles
+   ======================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ========================================
+   Scrollbar Styles
+   ======================================== */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-hover);
+}
+
+/* ========================================
+   Animations
+   ======================================== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+.animate-slide-in {
+  animation: slideIn 0.5s ease forwards;
+}
+
+.animate-pulse {
+  animation: pulse 2s ease-in-out infinite;
+}
