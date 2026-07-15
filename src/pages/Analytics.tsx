@@ -53,12 +53,12 @@ export default function Analytics() {
       className="space-y-6"
     >
       <motion.div variants={item}>
-        <h1 className="text-2xl font-bold" style={{ color: 'var(--text-primary)' }}>
-          Analytics
-        </h1>
-        <p style={{ color: 'var(--text-secondary)' }}>
-          Track your website performance and user engagement
-        </p>
+          <h1 className="text-xl sm:text-2xl font-bold" style={{ color: 'var(--text-primary)' }}>
+            Analytics
+          </h1>
+          <p className="text-sm sm:text-base" style={{ color: 'var(--text-secondary)' }}>
+            Track your website performance and user engagement
+          </p>
       </motion.div>
 
       {/* Quick Stats */}
@@ -72,18 +72,18 @@ export default function Analytics() {
           <motion.div
             key={stat.label}
             whileHover={{ y: -5 }}
-            className="p-5 rounded-xl flex items-center gap-4"
+            className="p-4 sm:p-5 rounded-xl flex items-center gap-3 sm:gap-4"
             style={{ 
               backgroundColor: 'var(--bg-card)',
               border: '1px solid var(--border-color)'
             }}
           >
-            <div className="p-3 rounded-xl bg-primary-100 dark:bg-primary-900/30">
-              <stat.icon size={24} className="text-primary-500" />
+            <div className="p-2.5 sm:p-3 rounded-xl bg-primary-100 dark:bg-primary-900/30 shrink-0">
+              <stat.icon size={20} className="text-primary-500 sm:w-6 sm:h-6" />
             </div>
             <div>
               <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>{stat.label}</p>
-              <p className="text-xl font-bold" style={{ color: 'var(--text-primary)' }}>{stat.value}</p>
+              <p className="text-lg sm:text-xl font-bold" style={{ color: 'var(--text-primary)' }}>{stat.value}</p>
               <p className="text-xs text-green-500">{stat.change}</p>
             </div>
           </motion.div>
@@ -94,13 +94,13 @@ export default function Analytics() {
       <motion.div variants={item} className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Visitors Chart */}
         <div 
-          className="p-6 rounded-xl"
+          className="p-4 sm:p-6 rounded-xl"
           style={{ 
             backgroundColor: 'var(--bg-card)',
             border: '1px solid var(--border-color)'
           }}
         >
-          <h3 className="text-lg font-semibold mb-4" style={{ color: 'var(--text-primary)' }}>
+          <h3 className="text-base sm:text-lg font-semibold mb-4" style={{ color: 'var(--text-primary)' }}>
             Visitors & Page Views
           </h3>
           <div className="h-[300px]">
@@ -137,13 +137,13 @@ export default function Analytics() {
 
         {/* Device Distribution */}
         <div 
-          className="p-6 rounded-xl"
+          className="p-4 sm:p-6 rounded-xl"
           style={{ 
             backgroundColor: 'var(--bg-card)',
             border: '1px solid var(--border-color)'
           }}
         >
-          <h3 className="text-lg font-semibold mb-4" style={{ color: 'var(--text-primary)' }}>
+          <h3 className="text-base sm:text-lg font-semibold mb-4" style={{ color: 'var(--text-primary)' }}>
             Device Distribution
           </h3>
           <div className="h-[300px] flex items-center justify-center">
@@ -172,7 +172,7 @@ export default function Analytics() {
               </PieChart>
             </ResponsiveContainer>
           </div>
-          <div className="flex justify-center gap-6 mt-4">
+          <div className="flex flex-wrap justify-center gap-3 sm:gap-6 mt-4">
             {pieData.map((item, index) => (
               <div key={item.name} className="flex items-center gap-2">
                 <div 

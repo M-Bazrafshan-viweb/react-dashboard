@@ -28,31 +28,31 @@ export default function Settings() {
       variants={container}
       initial="hidden"
       animate="show"
-      className="space-y-6 max-w-3xl"
+      className="space-y-6 max-w-3xl mx-auto"
     >
       <motion.div variants={item}>
-        <h1 className="text-2xl font-bold" style={{ color: 'var(--text-primary)' }}>
+        <h1 className="text-xl sm:text-2xl font-bold" style={{ color: 'var(--text-primary)' }}>
           Settings
         </h1>
-        <p style={{ color: 'var(--text-secondary)' }}>
+        <p className="text-sm sm:text-base" style={{ color: 'var(--text-secondary)' }}>
           Manage your account settings and preferences
         </p>
       </motion.div>
 
       {/* Profile Section */}
-      <motion.div 
+      <motion.div
         variants={item}
-        className="p-6 rounded-xl"
-        style={{ 
-          backgroundColor: 'var(--bg-card)',
-          border: '1px solid var(--border-color)'
-        }}
-      >
-        <div className="flex items-center gap-3 mb-6">
-          <User size={20} className="text-primary-500" />
-          <h2 className="text-lg font-semibold" style={{ color: 'var(--text-primary)' }}>
-            Profile
-          </h2>
+        className="p-4 sm:p-6 rounded-xl"
+      style={{ 
+        backgroundColor: 'var(--bg-card)',
+        border: '1px solid var(--border-color)'
+      }}
+    >
+      <div className="flex items-center gap-3 mb-6">
+        <User size={20} className="text-primary-500" />
+          <h2 className="text-base sm:text-lg font-semibold" style={{ color: 'var(--text-primary)' }}>
+          Profile
+        </h2>
         </div>
         <div className="space-y-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -106,24 +106,24 @@ export default function Settings() {
       </motion.div>
 
       {/* Appearance Section */}
-      <motion.div 
+      <motion.div
         variants={item}
-        className="p-6 rounded-xl"
-        style={{ 
-          backgroundColor: 'var(--bg-card)',
-          border: '1px solid var(--border-color)'
-        }}
-      >
-        <div className="flex items-center gap-3 mb-6">
-          <Palette size={20} className="text-primary-600" />
-          <h2 className="text-lg font-semibold" style={{ color: 'var(--text-primary)' }}>
-            Appearance
-          </h2>
+        className="p-4 sm:p-6 rounded-xl"
+      style={{ 
+        backgroundColor: 'var(--bg-card)',
+        border: '1px solid var(--border-color)'
+      }}
+    >
+      <div className="flex items-center gap-3 mb-6">
+        <Palette size={20} className="text-primary-600" />
+          <h2 className="text-base sm:text-lg font-semibold" style={{ color: 'var(--text-primary)' }}>
+          Appearance
+        </h2>
         </div>
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between gap-4">
           <div>
-            <p className="font-medium" style={{ color: 'var(--text-primary)' }}>Dark Mode</p>
-            <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>
+            <p className="font-medium text-sm sm:text-base" style={{ color: 'var(--text-primary)' }}>Dark Mode</p>
+            <p className="text-xs sm:text-sm" style={{ color: 'var(--text-secondary)' }}>
               Toggle between light and dark themes
             </p>
           </div>
@@ -142,19 +142,19 @@ export default function Settings() {
       </motion.div>
 
       {/* Notifications Section */}
-      <motion.div 
+      <motion.div
         variants={item}
-        className="p-6 rounded-xl"
-        style={{ 
-          backgroundColor: 'var(--bg-card)',
-          border: '1px solid var(--border-color)'
-        }}
-      >
-        <div className="flex items-center gap-3 mb-6">
-          <Bell size={20} className="text-primary-400" />
-          <h2 className="text-lg font-semibold" style={{ color: 'var(--text-primary)' }}>
-            Notifications
-          </h2>
+        className="p-4 sm:p-6 rounded-xl"
+      style={{ 
+        backgroundColor: 'var(--bg-card)',
+        border: '1px solid var(--border-color)'
+      }}
+    >
+      <div className="flex items-center gap-3 mb-6">
+        <Bell size={20} className="text-primary-400" />
+          <h2 className="text-base sm:text-lg font-semibold" style={{ color: 'var(--text-primary)' }}>
+          Notifications
+        </h2>
         </div>
         <div className="space-y-4">
           {[
@@ -181,19 +181,19 @@ export default function Settings() {
       </motion.div>
 
       {/* Security Section */}
-      <motion.div 
+      <motion.div
         variants={item}
-        className="p-6 rounded-xl"
-        style={{ 
-          backgroundColor: 'var(--bg-card)',
-          border: '1px solid var(--border-color)'
-        }}
-      >
-        <div className="flex items-center gap-3 mb-6">
-          <Shield size={20} className="text-primary-700" />
-          <h2 className="text-lg font-semibold" style={{ color: 'var(--text-primary)' }}>
-            Security
-          </h2>
+        className="p-4 sm:p-6 rounded-xl"
+      style={{ 
+        backgroundColor: 'var(--bg-card)',
+        border: '1px solid var(--border-color)'
+      }}
+    >
+      <div className="flex items-center gap-3 mb-6">
+        <Shield size={20} className="text-primary-700" />
+          <h2 className="text-base sm:text-lg font-semibold" style={{ color: 'var(--text-primary)' }}>
+          Security
+        </h2>
         </div>
         <div className="space-y-4">
           <div>
@@ -230,12 +230,12 @@ export default function Settings() {
       </motion.div>
 
       {/* Save Button */}
-      <motion.div variants={item} className="flex justify-end">
+      <motion.div variants={item} className="flex justify-end pb-4">
         <motion.button
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
           onClick={handleSave}
-          className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-primary-400 to-primary-600 text-white rounded-lg font-medium shadow-lg hover:shadow-xl transition-shadow"
+          className="flex items-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 bg-gradient-to-r from-primary-400 to-primary-600 text-white rounded-lg font-medium shadow-lg hover:shadow-xl transition-shadow text-sm sm:text-base"
         >
           <Save size={18} />
           Save Changes

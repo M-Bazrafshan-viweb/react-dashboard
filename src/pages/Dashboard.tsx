@@ -66,10 +66,10 @@ export default function Dashboard() {
     >
       {/* Page Title */}
       <motion.div variants={item}>
-        <h1 className="text-2xl font-bold" style={{ color: 'var(--text-primary)' }}>
+        <h1 className="text-xl sm:text-2xl font-bold" style={{ color: 'var(--text-primary)' }}>
           Dashboard
         </h1>
-        <p style={{ color: 'var(--text-secondary)' }}>
+        <p className="text-sm sm:text-base" style={{ color: 'var(--text-secondary)' }}>
           Welcome back, Mahshid! Here's what's happening today.
         </p>
       </motion.div>
@@ -180,18 +180,18 @@ export default function Dashboard() {
 
         {/* Weekly Tasks Chart */}
         <div 
-          className="p-6 rounded-xl"
+          className="p-4 sm:p-6 rounded-xl"
           style={{ 
             backgroundColor: 'var(--bg-card)',
             border: '1px solid var(--border-color)'
           }}
         >
-          <div className="flex items-center justify-between mb-6">
+          <div className="flex items-start justify-between mb-4 sm:mb-6 gap-2">
             <div>
-              <h3 className="text-lg font-semibold" style={{ color: 'var(--text-primary)' }}>
+              <h3 className="text-base sm:text-lg font-semibold" style={{ color: 'var(--text-primary)' }}>
                 Weekly Tasks
               </h3>
-              <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>
+              <p className="text-xs sm:text-sm" style={{ color: 'var(--text-secondary)' }}>
                 Tasks completed this week
               </p>
             </div>
