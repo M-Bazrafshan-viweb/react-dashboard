@@ -50,19 +50,19 @@ export default function Analytics() {
       variants={container}
       initial="hidden"
       animate="show"
-      className="space-y-6"
+      className="space-y-4 sm:space-y-6"
     >
       <motion.div variants={item}>
-          <h1 className="text-xl sm:text-2xl font-bold" style={{ color: 'var(--text-primary)' }}>
+          <h1 className="text-lg sm:text-xl md:text-2xl font-bold" style={{ color: 'var(--text-primary)' }}>
             Analytics
           </h1>
-          <p className="text-sm sm:text-base" style={{ color: 'var(--text-secondary)' }}>
+          <p className="text-xs sm:text-sm md:text-base" style={{ color: 'var(--text-secondary)' }}>
             Track your website performance and user engagement
           </p>
       </motion.div>
 
       {/* Quick Stats */}
-      <motion.div variants={item} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <motion.div variants={item} className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
         {[
           { icon: Users, label: 'Total Visitors', value: '12,345', change: '+12%' },
           { icon: Eye, label: 'Page Views', value: '45,678', change: '+8%' },
@@ -72,18 +72,18 @@ export default function Analytics() {
           <motion.div
             key={stat.label}
             whileHover={{ y: -5 }}
-            className="p-4 sm:p-5 rounded-xl flex items-center gap-3 sm:gap-4"
+            className="p-3 sm:p-4 md:p-5 rounded-xl flex items-center gap-2 sm:gap-3 md:gap-4 overflow-hidden"
             style={{ 
               backgroundColor: 'var(--bg-card)',
               border: '1px solid var(--border-color)'
             }}
           >
-            <div className="p-2.5 sm:p-3 rounded-xl bg-primary-100 dark:bg-primary-900/30 shrink-0">
-              <stat.icon size={20} className="text-primary-500 sm:w-6 sm:h-6" />
+            <div className="p-2 sm:p-2.5 md:p-3 rounded-xl bg-primary-100 dark:bg-primary-900/30 shrink-0">
+              <stat.icon size={18} className="text-primary-500 sm:w-5 sm:h-5 md:w-6 md:h-6" />
             </div>
-            <div>
-              <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>{stat.label}</p>
-              <p className="text-lg sm:text-xl font-bold" style={{ color: 'var(--text-primary)' }}>{stat.value}</p>
+            <div className="min-w-0">
+              <p className="text-xs sm:text-sm truncate" style={{ color: 'var(--text-secondary)' }}>{stat.label}</p>
+              <p className="text-base sm:text-lg md:text-xl font-bold" style={{ color: 'var(--text-primary)' }}>{stat.value}</p>
               <p className="text-xs text-green-500">{stat.change}</p>
             </div>
           </motion.div>
@@ -91,29 +91,30 @@ export default function Analytics() {
       </motion.div>
 
       {/* Charts */}
-      <motion.div variants={item} className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <motion.div variants={item} className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
         {/* Visitors Chart */}
         <div 
-          className="p-4 sm:p-6 rounded-xl"
+          className="p-3 sm:p-4 md:p-6 rounded-xl overflow-hidden"
           style={{ 
             backgroundColor: 'var(--bg-card)',
             border: '1px solid var(--border-color)'
           }}
         >
-          <h3 className="text-base sm:text-lg font-semibold mb-4" style={{ color: 'var(--text-primary)' }}>
+          <h3 className="text-sm sm:text-base md:text-lg font-semibold mb-3 sm:mb-4" style={{ color: 'var(--text-primary)' }}>
             Visitors & Page Views
           </h3>
-          <div className="h-[300px]">
+          <div className="h-[200px] sm:h-[250px] md:h-[300px] w-full">
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={lineData}>
                 <CartesianGrid strokeDasharray="3 3" stroke="var(--border-color)" />
-                <XAxis dataKey="name" stroke="var(--text-secondary)" />
-                <YAxis stroke="var(--text-secondary)" />
+                <XAxis dataKey="name" stroke="var(--text-secondary)" fontSize={12} tick={{ fontSize: 10 }} />
+                <YAxis stroke="var(--text-secondary)" fontSize={12} tick={{ fontSize: 10 }} width={40} />
                 <Tooltip 
                   contentStyle={{ 
                     backgroundColor: 'var(--bg-card)',
                     border: '1px solid var(--border-color)',
-                    borderRadius: '8px'
+                    borderRadius: '8px',
+                    fontSize: '12px'
                   }}
                 />
                 <Line 
@@ -137,24 +138,24 @@ export default function Analytics() {
 
         {/* Device Distribution */}
         <div 
-          className="p-4 sm:p-6 rounded-xl"
+          className="p-3 sm:p-4 md:p-6 rounded-xl overflow-hidden"
           style={{ 
             backgroundColor: 'var(--bg-card)',
             border: '1px solid var(--border-color)'
           }}
         >
-          <h3 className="text-base sm:text-lg font-semibold mb-4" style={{ color: 'var(--text-primary)' }}>
+          <h3 className="text-sm sm:text-base md:text-lg font-semibold mb-3 sm:mb-4" style={{ color: 'var(--text-primary)' }}>
             Device Distribution
           </h3>
-          <div className="h-[300px] flex items-center justify-center">
+          <div className="h-[200px] sm:h-[250px] md:h-[300px] flex items-center justify-center">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
                 <Pie
                   data={pieData}
                   cx="50%"
                   cy="50%"
-                  innerRadius={60}
-                  outerRadius={100}
+                  innerRadius={40}
+                  outerRadius={70}
                   paddingAngle={5}
                   dataKey="value"
                 >
@@ -166,20 +167,21 @@ export default function Analytics() {
                   contentStyle={{ 
                     backgroundColor: 'var(--bg-card)',
                     border: '1px solid var(--border-color)',
-                    borderRadius: '8px'
+                    borderRadius: '8px',
+                    fontSize: '12px'
                   }}
                 />
               </PieChart>
             </ResponsiveContainer>
           </div>
-          <div className="flex flex-wrap justify-center gap-3 sm:gap-6 mt-4">
+          <div className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-6 mt-3 sm:mt-4">
             {pieData.map((item, index) => (
-              <div key={item.name} className="flex items-center gap-2">
+              <div key={item.name} className="flex items-center gap-1.5 sm:gap-2">
                 <div 
-                  className="w-3 h-3 rounded-full" 
+                  className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full" 
                   style={{ backgroundColor: COLORS[index] }}
                 />
-                <span className="text-sm" style={{ color: 'var(--text-secondary)' }}>
+                <span className="text-xs sm:text-sm" style={{ color: 'var(--text-secondary)' }}>
                   {item.name} ({item.value}%)
                 </span>
               </div>

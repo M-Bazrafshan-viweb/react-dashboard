@@ -62,20 +62,20 @@ export default function Dashboard() {
       variants={container}
       initial="hidden"
       animate="show"
-      className="space-y-6"
+      className="space-y-4 sm:space-y-6"
     >
       {/* Page Title */}
       <motion.div variants={item}>
-        <h1 className="text-xl sm:text-2xl font-bold" style={{ color: 'var(--text-primary)' }}>
+        <h1 className="text-lg sm:text-xl md:text-2xl font-bold" style={{ color: 'var(--text-primary)' }}>
           Dashboard
         </h1>
-        <p className="text-sm sm:text-base" style={{ color: 'var(--text-secondary)' }}>
+        <p className="text-xs sm:text-sm md:text-base" style={{ color: 'var(--text-secondary)' }}>
           Welcome back, Mahshid! Here's what's happening today.
         </p>
       </motion.div>
 
       {/* Stats Cards */}
-      <motion.div variants={item} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <motion.div variants={item} className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
         <StatsCard
           title="Total Revenue"
           value="$45,231.89"
@@ -111,18 +111,18 @@ export default function Dashboard() {
       </motion.div>
 
       {/* Charts Row */}
-      <motion.div variants={item} className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <motion.div variants={item} className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
         {/* Revenue Chart */}
         <div 
-          className="lg:col-span-2 p-4 sm:p-6 rounded-xl"
+          className="lg:col-span-2 p-3 sm:p-4 md:p-6 rounded-xl overflow-hidden"
           style={{ 
             backgroundColor: 'var(--bg-card)',
             border: '1px solid var(--border-color)'
           }}
         >
-          <div className="flex items-start justify-between mb-4 sm:mb-6 gap-2">
-            <div>
-              <h3 className="text-base sm:text-lg font-semibold" style={{ color: 'var(--text-primary)' }}>
+          <div className="flex items-start justify-between mb-3 sm:mb-4 md:mb-6 gap-2">
+            <div className="min-w-0">
+              <h3 className="text-sm sm:text-base md:text-lg font-semibold" style={{ color: 'var(--text-primary)' }}>
                 Revenue Overview
               </h3>
               <p className="text-xs sm:text-sm" style={{ color: 'var(--text-secondary)' }}>
@@ -136,7 +136,7 @@ export default function Dashboard() {
               <MoreHorizontal size={20} />
             </button>
           </div>
-          <div className="h-[300px]">
+          <div className="h-[200px] sm:h-[250px] md:h-[300px] w-full">
             <ResponsiveContainer width="100%" height="100%">
               <AreaChart data={revenueData}>
                 <defs>
@@ -150,13 +150,14 @@ export default function Dashboard() {
                   </linearGradient>
                 </defs>
                 <CartesianGrid strokeDasharray="3 3" stroke="var(--border-color)" />
-                <XAxis dataKey="name" stroke="var(--text-secondary)" />
-                <YAxis stroke="var(--text-secondary)" />
+                <XAxis dataKey="name" stroke="var(--text-secondary)" fontSize={12} tick={{ fontSize: 10 }} />
+                <YAxis stroke="var(--text-secondary)" fontSize={12} tick={{ fontSize: 10 }} width={40} />
                 <Tooltip 
                   contentStyle={{ 
                     backgroundColor: 'var(--bg-card)',
                     border: '1px solid var(--border-color)',
-                    borderRadius: '8px'
+                    borderRadius: '8px',
+                    fontSize: '12px'
                   }}
                 />
                 <Area 
@@ -180,37 +181,38 @@ export default function Dashboard() {
 
         {/* Weekly Tasks Chart */}
         <div 
-          className="p-4 sm:p-6 rounded-xl"
+          className="p-3 sm:p-4 md:p-6 rounded-xl overflow-hidden"
           style={{ 
             backgroundColor: 'var(--bg-card)',
             border: '1px solid var(--border-color)'
           }}
         >
-          <div className="flex items-start justify-between mb-4 sm:mb-6 gap-2">
-            <div>
-              <h3 className="text-base sm:text-lg font-semibold" style={{ color: 'var(--text-primary)' }}>
+          <div className="flex items-start justify-between mb-3 sm:mb-4 md:mb-6 gap-2">
+            <div className="min-w-0">
+              <h3 className="text-sm sm:text-base md:text-lg font-semibold" style={{ color: 'var(--text-primary)' }}>
                 Weekly Tasks
               </h3>
               <p className="text-xs sm:text-sm" style={{ color: 'var(--text-secondary)' }}>
                 Tasks completed this week
               </p>
             </div>
-            <div className="flex items-center gap-1 text-green-500">
+            <div className="flex items-center gap-1 text-green-500 shrink-0">
               <ArrowUpRight size={16} />
               <span className="text-sm font-medium">+12%</span>
             </div>
           </div>
-          <div className="h-[300px]">
+          <div className="h-[200px] sm:h-[250px] md:h-[300px] w-full">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={weeklyData}>
                 <CartesianGrid strokeDasharray="3 3" stroke="var(--border-color)" />
-                <XAxis dataKey="name" stroke="var(--text-secondary)" />
-                <YAxis stroke="var(--text-secondary)" />
+                <XAxis dataKey="name" stroke="var(--text-secondary)" fontSize={12} tick={{ fontSize: 10 }} />
+                <YAxis stroke="var(--text-secondary)" fontSize={12} tick={{ fontSize: 10 }} width={30} />
                 <Tooltip 
                   contentStyle={{ 
                     backgroundColor: 'var(--bg-card)',
                     border: '1px solid var(--border-color)',
-                    borderRadius: '8px'
+                    borderRadius: '8px',
+                    fontSize: '12px'
                   }}
                 />
                 <Bar 

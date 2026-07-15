@@ -32,7 +32,7 @@ export default function Layout({ children }: LayoutProps) {
   const { isDark, toggleTheme } = useTheme()
 
   return (
-    <div className="flex min-h-screen">
+    <div className="flex min-h-screen overflow-x-hidden">
       {/* Desktop Sidebar */}
       <motion.aside
         initial={false}
@@ -125,7 +125,7 @@ export default function Layout({ children }: LayoutProps) {
         </div>
       </motion.aside>
 
-      {/* Mobile Sidebar */}
+      {/* Mobile Sidebar Overlay */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <>
@@ -200,76 +200,89 @@ export default function Layout({ children }: LayoutProps) {
         )}
       </AnimatePresence>
 
-      {/* Main Content */}
-      <div className="flex-1 lg:ml-[80px]">
-        {/* Header */}
-        <header 
-          className="sticky top-0 z-10 h-16 flex items-center justify-between px-4 lg:px-6"
-          style={{ 
-            backgroundColor: 'var(--bg-secondary)',
-            borderBottom: '1px solid var(--border-color)'
-          }}
-        >
-          <div className="flex items-center gap-4">
-            <button
-              onClick={() => setMobileMenuOpen(true)}
-              className="lg:hidden p-2 rounded-lg"
-              style={{ color: 'var(--text-secondary)' }}
-            >
-              <Menu size={20} />
-            </button>
-            <div className="relative hidden sm:block">
-              <Search 
-                size={18} 
-                className="absolute left-3 top-1/2 -translate-y-1/2"
+      {/* Main Content - dynamic margin based on sidebar state */}
+      <div 
+        className="flex-1 transition-all duration-300 lg:ml-0 overflow-x-hidden"
+        style={{ marginLeft: 0 }}
+      >
+        <style>{`
+          @media (min-width: 1024px) {
+            .main-content-wrapper {
+              margin-left: ${sidebarOpen ? '256px' : '80px'};
+              transition: margin-left 0.3s ease;
+            }
+          }
+        `}</style>
+        <div className="main-content-wrapper flex-1 min-w-0">
+          {/* Header */}
+          <header 
+            className="sticky top-0 z-10 h-14 sm:h-16 flex items-center justify-between px-3 sm:px-4 lg:px-6"
+            style={{ 
+              backgroundColor: 'var(--bg-secondary)',
+              borderBottom: '1px solid var(--border-color)'
+            }}
+          >
+            <div className="flex items-center gap-2 sm:gap-4">
+              <button
+                onClick={() => setMobileMenuOpen(true)}
+                className="lg:hidden p-2 rounded-lg"
                 style={{ color: 'var(--text-secondary)' }}
-              />
-              <input
-                type="text"
-                placeholder="Search..."
-                className="pl-10 pr-4 py-2 rounded-lg w-64 focus:outline-none focus:ring-2 focus:ring-primary-400"
-                style={{ 
-                  backgroundColor: 'var(--bg-primary)',
-                  color: 'var(--text-primary)',
-                  border: '1px solid var(--border-color)'
-                }}
-              />
-            </div>
-          </div>
-
-          <div className="flex items-center gap-4">
-            <button 
-              className="relative p-2 rounded-lg hover:bg-primary-100 dark:hover:bg-primary-900/30"
-              style={{ color: 'var(--text-secondary)' }}
-            >
-              <Bell size={20} />
-              <span className="absolute top-1 right-1 w-2 h-2 bg-primary-500 rounded-full" />
-            </button>
-            <div className="flex items-center gap-3 cursor-pointer">
-              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-primary-400 to-primary-600 flex items-center justify-center">
-                <span className="text-white font-medium text-sm">M</span>
+              >
+                <Menu size={20} />
+              </button>
+              <div className="relative hidden sm:block">
+                <Search 
+                  size={18} 
+                  className="absolute left-3 top-1/2 -translate-y-1/2"
+                  style={{ color: 'var(--text-secondary)' }}
+                />
+                <input
+                  type="text"
+                  placeholder="Search..."
+                  className="pl-10 pr-4 py-2 rounded-lg w-48 md:w-64 focus:outline-none focus:ring-2 focus:ring-primary-400 text-sm"
+                  style={{ 
+                    backgroundColor: 'var(--bg-primary)',
+                    color: 'var(--text-primary)',
+                    border: '1px solid var(--border-color)'
+                  }}
+                />
               </div>
-              <div className="hidden sm:block">
-                <p className="text-sm font-medium" style={{ color: 'var(--text-primary)' }}>Mahshid</p>
-                <p className="text-xs" style={{ color: 'var(--text-secondary)' }}>Frontend Developer</p>
-              </div>
-              <ChevronDown size={16} style={{ color: 'var(--text-secondary)' }} />
             </div>
-          </div>
-        </header>
 
-        {/* Page Content */}
-        <main className="p-4 lg:p-6">
-          {children}
-        </main>
+            <div className="flex items-center gap-2 sm:gap-4">
+              <button 
+                className="relative p-2 rounded-lg hover:bg-primary-100 dark:hover:bg-primary-900/30"
+                style={{ color: 'var(--text-secondary)' }}
+              >
+                <Bell size={20} />
+                <span className="absolute top-1 right-1 w-2 h-2 bg-primary-500 rounded-full" />
+              </button>
+              <div className="flex items-center gap-2 sm:gap-3 cursor-pointer">
+                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-primary-400 to-primary-600 flex items-center justify-center shrink-0">
+                  <span className="text-white font-medium text-sm">M</span>
+                </div>
+                <div className="hidden sm:block">
+                  <p className="text-sm font-medium" style={{ color: 'var(--text-primary)' }}>Mahshid</p>
+                  <p className="text-xs" style={{ color: 'var(--text-secondary)' }}>Frontend Developer</p>
+                </div>
+                <ChevronDown size={16} className="hidden sm:block" style={{ color: 'var(--text-secondary)' }} />
+              </div>
+            </div>
+          </header>
 
-        {/* Developer Badge */}
-        <footer className="p-4 text-center text-xs text-gray-400 dark:text-gray-500">
-          ساخته شده با ❤️ توسط{' '}
-          <a href="https://github.com/M-Bazrafshan-viweb" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">
-            مهشید بذرافشان
-          </a>
-        </footer>
+          {/* Page Content */}
+          <main className="p-3 sm:p-4 lg:p-6 overflow-x-hidden">
+            {children}
+          </main>
+
+          {/* Developer Badge */}
+          <footer className="p-4 text-center text-xs text-gray-400 dark:text-gray-500">
+            ساخته شده با ❤️ توسط{' '}
+            <a href="https://github.com/M-Bazrafshan-viweb" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">
+              مهشید بذرافشان
+            </a>
+          </footer>
+        </div>
       </div>
     </div>
   )
