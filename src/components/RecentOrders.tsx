@@ -36,7 +36,7 @@ export default function RecentOrders() {
         border: '1px solid var(--border-color)'
       }}
     >
-      <div className="p-6 border-b" style={{ borderColor: 'var(--border-color)' }}>
+      <div className="p-4 sm:p-6 border-b" style={{ borderColor: 'var(--border-color)' }}>
         <div className="flex items-center justify-between">
           <div>
             <h3 className="text-lg font-semibold" style={{ color: 'var(--text-primary)' }}>
@@ -55,7 +55,8 @@ export default function RecentOrders() {
         </div>
       </div>
 
-      <div className="overflow-x-auto">
+      {/* Desktop: Table view (sm and above) */}
+      <div className="hidden sm:block overflow-x-auto">
         <table className="w-full">
           <thead>
             <tr style={{ borderBottom: '1px solid var(--border-color)' }}>
@@ -143,6 +144,56 @@ export default function RecentOrders() {
             ))}
           </tbody>
         </table>
+      </div>
+
+      {/* Mobile: Card view (below sm) */}
+      <div className="sm:hidden divide-y" style={{ borderColor: 'var(--border-color)' }}>
+        {orders.map((order) => (
+          <motion.div
+            key={order.id}
+            className="p-4"
+            style={{ borderBottom: '1px solid var(--border-color)' }}
+          >
+            <div className="flex items-start justify-between mb-2">
+              <div>
+                <p className="font-medium" style={{ color: 'var(--text-primary)' }}>
+                  {order.customer}
+                </p>
+                <p className="font-mono text-xs" style={{ color: 'var(--text-secondary)' }}>
+                  {order.id}
+                </p>
+              </div>
+              <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${statusStyles[order.status]}`}>
+                {order.status.charAt(0).toUpperCase() + order.status.slice(1)}
+              </span>
+            </div>
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-xs" style={{ color: 'var(--text-secondary)' }}>{order.email}</p>
+                <p className="text-xs mt-1" style={{ color: 'var(--text-secondary)' }}>{order.date}</p>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="font-semibold text-sm" style={{ color: 'var(--text-primary)' }}>
+                  {order.amount}
+                </span>
+                <div className="flex items-center gap-1">
+                  <motion.button
+                    whileTap={{ scale: 0.95 }}
+                    className="p-1.5 rounded-lg hover:bg-primary-100 dark:hover:bg-primary-900/30 text-primary-500"
+                  >
+                    <Eye size={14} />
+                  </motion.button>
+                  <motion.button
+                    whileTap={{ scale: 0.95 }}
+                    className="p-1.5 rounded-lg hover:bg-red-100 dark:hover:bg-red-900/30 text-red-500"
+                  >
+                    <Trash2 size={14} />
+                  </motion.button>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        ))}
       </div>
     </div>
   )

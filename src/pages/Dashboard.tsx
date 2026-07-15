@@ -114,23 +114,23 @@ export default function Dashboard() {
       <motion.div variants={item} className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Revenue Chart */}
         <div 
-          className="lg:col-span-2 p-6 rounded-xl"
+          className="lg:col-span-2 p-4 sm:p-6 rounded-xl"
           style={{ 
             backgroundColor: 'var(--bg-card)',
             border: '1px solid var(--border-color)'
           }}
         >
-          <div className="flex items-center justify-between mb-6">
+          <div className="flex items-start justify-between mb-4 sm:mb-6 gap-2">
             <div>
-              <h3 className="text-lg font-semibold" style={{ color: 'var(--text-primary)' }}>
+              <h3 className="text-base sm:text-lg font-semibold" style={{ color: 'var(--text-primary)' }}>
                 Revenue Overview
               </h3>
-              <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>
+              <p className="text-xs sm:text-sm" style={{ color: 'var(--text-secondary)' }}>
                 Monthly revenue and expenses
               </p>
             </div>
             <button 
-              className="p-2 rounded-lg hover:bg-primary-100 dark:hover:bg-primary-900/30"
+              className="p-2 rounded-lg hover:bg-primary-100 dark:hover:bg-primary-900/30 shrink-0"
               style={{ color: 'var(--text-secondary)' }}
             >
               <MoreHorizontal size={20} />
